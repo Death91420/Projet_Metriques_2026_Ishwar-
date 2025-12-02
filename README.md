@@ -24,7 +24,7 @@ Remarque importante : **Lors de votre inscription, utilisez une adresse mail val
 2° - Faites un Fork de ce Repository (celui-ci même).
 Voici une vidéo d'accompagnement pour vous aider dans la réalisation des "Forks" : [Forker ce projet](https://youtu.be/p33-7XQ29zQ)    
   
-**Travail demandé :** Créé votre compte GitHUB, faites le fork de ce projet et **copier l'URL de votre Repository GitHUB dans le canal Discord**.
+**Travail demandé :** Créé votre compte GitHUB, faites le fork de ce projet et **copier l'URL de votre Repository GitHUB dans le canal général de Discord**.
 
 Notion acquise lors de cette séquence :  
 Vous avez appris lors de cette séquence à créer des Repository pour stocker et travailler avec votre code informatique. Vous pourez par la suite travailler en groupe sur un projet. Vous avez également appris à faire des Forks. C'est à dire, faire des copies de projets déjà existant dans GitHUB que vous pourrez ensuite adapter à vos besoins.
