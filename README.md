@@ -89,6 +89,63 @@ Il s'agit ici des prévisions de températures pour la ville de Paris pour les 7
   
 Les API fournissent en général des données au format JSON. JSON est un format structuré avec des étiquettes (également appelé des keys) et ont pour objectif de fournir des données "brut". **Prenez ici quelques minutes pour "comprendre" la structure de ces données JSON et identifer les clés et les données.**
 
+Ce qui nous intéresse à présent, c'est extraire la valeur de [time] (c'est à dire les dates) et les valeurs stockées dans le tableau [temperature_2m], c'est à dire les températures associées aux dates.  
+  
+Vous allez à présent créer une nouvelle route "/paris" dans votre application Python pour filtrer l'API d'api.open-meteo.com et extraire uniquement les dates et température de Paris pour les 7 prochains jours. **Ci-dessous la route à ajouter dans votre application app.py**.
+```
+@app.get("/paris")
+def api_paris():
+    
+    url = "https://api.open-meteo.com/v1/forecast?latitude=48.8566&longitude=2.3522&hourly=temperature_2m"
+    response = requests.get(url)
+    data = response.json()
+
+    times = data.get("hourly", {}).get("time", [])
+    temps = data.get("hourly", {}).get("temperature_2m", [])
+
+    n = min(len(times), len(temps))
+    result = [
+        {"datetime": times[i], "temperature_c": temps[i]}
+        for i in range(n)
+    ]
+
+    return jsonify(result)
+```
+**Mettez à jour votre Codespace** et observez le résultat sur votre site Web.
+  
+<sub>_________________________________________________________________________</sub>
+### Exercice 3 : Les fichiers HTML   
+### Objectif : Comprendre le fonctionnement de Framework Flask    
+Le Framework Flask nous impose de déposer tous les fichiers HTML dans le répertoire templates dédié à cet effet.  
+Depuis GitHUB, nous allons donc créer et déposer dans le répertoire "templates" une page HTML qui sera accessible depuis la route suivante : https://{VOTRE_URL}/rapport/  
+  
+**Etape 1.1 : Création du fichier graphique.html**  
+Dans votre répertoire templates, créez un fichier graphique.html contenant le code suivant :  
+```
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Graphique</title>
+ </head>  
+<body>
+    <h2>Mon Graphique</h2>
+</body>
+</html>
+```
+**Etape 1.2 : Création d'une nouvelle route**  
+Créez à présent une nouvelle route afin de pouvoir consulter votre fichier HTML depuis votre site en ligne.
+Pour cela, ajouter le code ci-dessous dans votre fichier app.py :
+```
+@app.route("/rapport/")
+def mongraphique():
+    return render_template("graphique.html")
+```
+Notions acquises dans cet exercice : Nous avons vu lors de cet exercice comment créer et où déposer les fichiers HTML lorsque l'on utise le Framework Flask. Nous avons également découvert que les Framework (cadre de travail) nous imposent une structure de travail où chaque élément doit être placé sa place.  
+
+
+
+
+
   
 ------------------------------------------------------------------------------------------------------
 PROJET METRIQUES
