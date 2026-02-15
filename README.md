@@ -136,7 +136,7 @@ Dans votre répertoire templates, créez un fichier graphique.html contenant le 
 Créez à présent une nouvelle route afin de pouvoir consulter votre fichier HTML depuis votre site en ligne.
 Pour cela, ajouter le code ci-dessous dans votre fichier app.py :
 ```
-@app.route("/rapport/")
+@app.route("/rapport")
 def mongraphique():
     return render_template("graphique.html")
 ```
