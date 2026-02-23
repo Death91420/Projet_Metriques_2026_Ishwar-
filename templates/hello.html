@@ -1,9 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head><meta charset="utf-8"><title>Hello</title></head>
-  <body>
-    <h1>ATELIER METRIQUES</h1>
-    <h2>Nom Prénom : Ishwar ANANDANE</h2>
-  </body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Accueil - Ishwar ANANDANE</title>
+    <style>
+        :root { --primary: #4285F4; --bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; max-width: 600px; width: 90%; }
+        h1 { color: var(--primary); margin-bottom: 0.5rem; font-size: 2.5rem; }
+        h2 { color: #5f6368; font-weight: 400; margin-bottom: 2rem; border-bottom: 2px solid #eee; padding-bottom: 1rem; }
+        .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 2rem; }
+        .nav-card { padding: 15px; background: #fff; border: 1px solid #ddd; border-radius: 12px; text-decoration: none; color: #333; transition: all 0.3s ease; font-weight: 500; }
+        .nav-card:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-3px); }
+        .badge { background: #e8f0fe; color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="badge">Session 2026 - Projet Métriques</div>
+        <h1>ATELIER MÉTRIQUES</h1>
+        <h2>Ishwar ANANDANE</h2>
+        
+        <p>Bienvenue sur mon interface de monitoring météo. Sélectionnez un module ci-dessous :</p>
+        
+        <div class="nav-grid">
+            <a href="/contact" class="nav-card">📬 Contact</a>
+            <a href="/rapport" class="nav-card">📈 Courbe Paris</a>
+            <a href="/histogramme" class="nav-card">📊 Histogramme</a>
+            <a href="/vent" class="nav-card">🚀 Jauge Vent Marseille</a>
+        </div>
+    </div>
+</body>
 </html>
-

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Prévisions Paris — Histogramme</title>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 24px; }
+    #chart_div { width: 100%; height: 500px; }
+  </style>
+</head>
+<body>
+  <h1>Prévisions Températures (Histogramme)</h1>
+  <div id="chart_div"></div>
+
+  <script>
+    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(drawColumnChart);
+
+    async function drawColumnChart() {
+      try {
+        const res = await fetch('/paris');
+        const json = await res.json();
+
+        const data = new google.visualization.DataTable();
+        data.addColumn('datetime', 'Date');
+        data.addColumn('number', 'Température (°C)');
+
+        const rows = json.map(p => [new Date(p.datetime), Number(p.temperature_c)]);
+        data.addRows(rows);
+
+        const options = {
+          title: 'Températures à Paris pour les 7 prochains jours',
+          hAxis: { title: 'Date/Heure', format: 'dd/MM' },
+          vAxis: { title: 'Degrés Celsius' },
+          colors: ['#4285F4'], // Bleu Google
+          legend: { position: 'none' }
+        };
+
+        // Utilisation de ColumnChart pour l'histogramme
+        const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      } catch (err) {
+        console.error("Erreur de chargement :", err);
+      }
+    }
+  </script>
+</body>
+</html>

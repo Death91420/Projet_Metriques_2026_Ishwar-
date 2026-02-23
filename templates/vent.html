@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Marseille - Vent</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f0f2f5; }
+        #chart_div { width: 400px; height: 400px; margin: 0 auto; }
+    </style>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      async function drawChart() {
+        // Fetch des données de Marseille (on peut réutiliser l'API ou en créer une dédiée)
+        const response = await fetch('/api/marseille');
+        const dataJson = await response.json();
+        
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Vent (km/h)', dataJson.vitesse_vent]
+        ]);
+
+        var options = {
+          width: 400, height: 400,
+          redFrom: 90, redTo: 100,
+          yellowFrom: 75, yellowTo: 90,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+</head>
+<body>
+    <h1>Météo Marseille : Vitesse du Vent</h1>
+    <div id="chart_div"></div>
+</body>
+</html>
